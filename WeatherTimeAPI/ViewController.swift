@@ -58,7 +58,7 @@ class ViewController: UIViewController, WCSessionDelegate {
                     let maxTemp = jsonResponse["main"]["temp_max"].stringValue
                     let minTemp = jsonResponse["main"]["temp_min"].stringValue
                     let humidity = jsonResponse["main"]["humidity"].stringValue
-                    let cloudiness = jsonResponse["clouds"]["all"].stringValue
+//                    let cloudiness = jsonResponse["clouds"]["all"].stringValue
                     let desc = jsonResponse["weather"][0]["description"].stringValue
                     
                     
@@ -72,7 +72,7 @@ class ViewController: UIViewController, WCSessionDelegate {
                     print("Maximum Temperature: \(maxTemp)")
                     print("Minimum Temperature: \(minTemp)")
                     print("Humidity: \(humidity)")
-                    print("Cloudiness: \(cloudiness)")
+//                    print("Cloudiness: \(cloudiness)")
                     print("Description: \(desc)")
                 }
             

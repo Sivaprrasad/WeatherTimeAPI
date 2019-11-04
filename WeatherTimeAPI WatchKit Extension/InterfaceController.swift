@@ -15,16 +15,18 @@ import CoreLocation
 class InterfaceController: WKInterfaceController {
 
     // MARK: Outlets
-    @IBOutlet var sunriseLabel: WKInterfaceLabel!
-    @IBOutlet var sunsetLabel: WKInterfaceLabel!
+   
     @IBOutlet var cityLabel: WKInterfaceLabel!
+    @IBOutlet weak var currentTempLabel: WKInterfaceLabel!
+    @IBOutlet weak var maxTempLabel: WKInterfaceLabel!
     
-    @IBOutlet var loadingSunriseImage: WKInterfaceImage!
-    @IBOutlet var loadingSunsetImage: WKInterfaceImage!
+    @IBOutlet weak var minTempLabel: WKInterfaceLabel!
     
+    @IBOutlet weak var humidityLabel: WKInterfaceLabel!
+    @IBOutlet weak var descriptLabel: WKInterfaceLabel!
     
     // MARK: variables
-    var cityCoordinates:CLLocationCoordinate2D?
+//    var cityCoordinates:CLLocationCoordinate2D?
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -36,26 +38,26 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        let preferences = UserDefaults.standard
+//        let preferences = UserDefaults.standard
+//
+//        print("SHARED PREFERENCES OUTPUT")
+//        print(preferences.string(forKey: "savedLat"))
+//        print(preferences.string(forKey: "savedLon"))
+//        print(preferences.string(forKey: "savedCity"))
+//
+//
+//        var lat = preferences.string(forKey:"savedLat")
+//        var lon = preferences.string(forKey:"savedLon")
+//        var city = preferences.string(forKey:"savedCity")
+//
+//        if (lat == nil || lon == nil || city == nil) {
+//            lat = "35"
+//            lon = "139"
+//            city = "London"
+//
+//        }
         
-        print("SHARED PREFERENCES OUTPUT")
-        print(preferences.string(forKey: "savedLat"))
-        print(preferences.string(forKey: "savedLon"))
-        print(preferences.string(forKey: "savedCity"))
-        
-        
-        var lat = preferences.string(forKey:"savedLat")
-        var lon = preferences.string(forKey:"savedLon")
-        var city = preferences.string(forKey:"savedCity")
-        
-        if (lat == nil || lon == nil || city == nil) {
-            lat = "35"
-            lon = "139"
-            city = "London"
-           
-        }
-        
-        // Update UI
+//         Update UI
 //         self.cityLabel.setText(city)
         
         // start animations
@@ -80,6 +82,28 @@ class InterfaceController: WKInterfaceController {
             
             // GET sunrise/sunset time out of the JSON response
             let jsonResponse = JSON(apiData)
+            let cityName = jsonResponse["name"].stringValue
+            let currentTemp = jsonResponse["main"]["temp"].stringValue
+            let maxTemp = jsonResponse["main"]["temp_max"].stringValue
+            let minTemp = jsonResponse["main"]["temp_min"].stringValue
+            let humidity = jsonResponse["main"]["humidity"].stringValue
+            let desc = jsonResponse["weather"][0]["description"].stringValue
+            
+            // DEBUG:  Output it to the terminal
+            print("City Name: \(cityName)")
+            print("Current Temperature: \(currentTemp)")
+            print("Maximum Temperature: \(maxTemp)")
+            print("Minimum Temperature: \(minTemp)")
+            print("Humidity: \(humidity)")
+            print("Description: \(desc)")
+            
+            // display in a UI
+            self.cityLabel.setText("\(cityName)")
+            self.currentTempLabel.setText("Temperature: \(currentTemp)'C")
+            self.maxTempLabel.setText("Max Temperature: \(maxTemp)'C")
+            self.minTempLabel.setText("Min Temperature: \(minTemp)'C")
+            self.humidityLabel.setText("Humidity: \(humidity) % ")
+            self.descriptLabel.setText("\(desc)")
 
         }
     }

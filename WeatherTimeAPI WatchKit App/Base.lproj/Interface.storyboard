@@ -17,19 +17,17 @@
                         </separator>
                         <group width="1" alignment="left" id="oHF-xD-lSZ">
                             <items>
-                                <group width="1" alignment="left" layout="vertical" id="W7N-h8-KmF" userLabel="weatherData">
+                                <group width="1" alignment="center" layout="vertical" id="W7N-h8-KmF" userLabel="weatherData">
                                     <items>
-                                        <label alignment="left" text="Temperature" id="NpU-95-6xg"/>
-                                        <label alignment="left" text="Label" id="alf-oe-J7e"/>
-                                        <label alignment="left" text="Max:" id="ObE-Lg-8Uz"/>
-                                        <label alignment="left" text="Min:" id="nqj-n4-ebB"/>
-                                        <label alignment="left" text="Humidity:" id="Pqv-md-xgI"/>
-                                        <label alignment="left" text="Cloudiness:" id="CxR-OX-wyT"/>
+                                        <label alignment="right" verticalAlignment="center" text="Temperature" minimumScaleFactor="0.29999999999999999" id="NpU-95-6xg"/>
+                                        <label alignment="right" verticalAlignment="center" text="Max" minimumScaleFactor="0.29999999999999999" id="ObE-Lg-8Uz"/>
+                                        <label alignment="right" verticalAlignment="center" text="Min" minimumScaleFactor="0.29999999999999999" id="nqj-n4-ebB"/>
+                                        <label alignment="right" verticalAlignment="center" text="Humidity" minimumScaleFactor="0.29999999999999999" id="Pqv-md-xgI"/>
+                                        <label alignment="right" verticalAlignment="center" text="Description" minimumScaleFactor="0.10000000000000001" id="uVR-vh-Iw8"/>
                                     </items>
                                 </group>
                             </items>
                         </group>
-                        <label alignment="center" text="Description" id="uVR-vh-Iw8"/>
                         <button alignment="center" verticalAlignment="bottom" id="0HF-QH-Aeb">
                             <group key="contentGroup" height="30" alignment="left" spacing="5" id="sso-Zd-5XI">
                                 <items>
@@ -41,17 +39,19 @@
                                 <color key="backgroundColor" red="0.1756665687" green="0.1756665687" blue="0.1756665687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <edgeInsets key="margins" left="7" right="7" top="0.0" bottom="0.0"/>
                             </group>
-                            <connections>
-                                <segue destination="Cyn-i5-Oxr" kind="push" identifier="segueA" id="CxJ-d8-bnh"/>
-                            </connections>
                         </button>
                     </items>
                     <connections>
                         <outlet property="cityLabel" destination="2qF-Q7-SgZ" id="5Z4-gj-C8G"/>
+                        <outlet property="currentTempLabel" destination="NpU-95-6xg" id="oAZ-HX-gWa"/>
+                        <outlet property="descriptLabel" destination="uVR-vh-Iw8" id="WUK-24-S4J"/>
+                        <outlet property="humidityLabel" destination="Pqv-md-xgI" id="Njx-0U-J16"/>
+                        <outlet property="maxTempLabel" destination="ObE-Lg-8Uz" id="XhM-6b-ezl"/>
+                        <outlet property="minTempLabel" destination="nqj-n4-ebB" id="Dgl-zL-x7U"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="397" y="154"/>
+            <point key="canvasLocation" x="386" y="139"/>
         </scene>
         <!--City Settings Interface Controller-->
         <scene sceneID="FuV-Up-Ev3">
@@ -85,7 +85,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="718" y="152"/>
+            <point key="canvasLocation" x="707" y="126"/>
         </scene>
     </scenes>
     <resources>

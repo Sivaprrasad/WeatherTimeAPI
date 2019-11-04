@@ -70,7 +70,7 @@ class CitySettingsInterfaceController: WKInterfaceController {
         
         
         let URL = "https://api.openweathermap.org/data/2.5/weather?q=\(cityParam!)&units=metric&appid=\(self.API_KEY)&format=json"
-//        "https://us1.locationiq.com/v1/search.php?key=\(self.API_KEY)&q=\(cityParam!)&format=json"
+//       "https://us1.locationiq.com/v1/search.php?key=\(self.API_KEY)&q=\(cityParam!)&format=json"
         print(URL)
         Alamofire.request(URL).responseJSON {
             // 1. store the data from the internet in the
@@ -95,7 +95,7 @@ class CitySettingsInterfaceController: WKInterfaceController {
             let data = JSON(results)
             self.latitude = data["lat"].string
             self.longitude = data["lon"].string
-
+            
             print("Lat: \(self.latitude)")
             print("Long: \(self.longitude)")
             
@@ -122,7 +122,7 @@ class CitySettingsInterfaceController: WKInterfaceController {
         //It WILL work with a real watch -- just not the simulator.
         //This code remains here for reference purposes
         
-        /*
+        
         let geocoder = CLGeocoder()
         
         geocoder.geocodeAddressString(cityName, completionHandler: {
@@ -137,7 +137,6 @@ class CitySettingsInterfaceController: WKInterfaceController {
                 print(coordinates)
             }
         })
-        */
         
     }
     

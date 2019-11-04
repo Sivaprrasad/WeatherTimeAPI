@@ -34,7 +34,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-                let URL = "api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=361348d124de7eca4866684aeb3d5831"
+                let URL = "https://api.openweathermap.org/data/2.5/weather?lat=43.65&lon=79.38&appid=361348d124de7eca4866684aeb3d5831"
 //        api.openweathermap.org/data/2.5/weather?lat=35&lon=139
 //        api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=361348d124de7eca4866684aeb3d5831
 //       api.sunrise-sunset.org/json?lat=49.2827&lng=-123.1207&date=today
@@ -56,15 +56,15 @@ class ViewController: UIViewController, WCSessionDelegate {
                     
                     
                     // GET sunrise/sunset time out of the JSON response
-//                    let jsonResponse = JSON(apiData)
-//                    let currentTemp = jsonResponse["results"]["main"]["temp"].string
-//                    let tempStatus = jsonResponse["results"]["weather"][1].string
+                    let jsonResponse = JSON(apiData)
+                    let currentTemp = jsonResponse["results"]["main"]["temp"].string
+                    let tempStatus = jsonResponse["results"]["weather"][1].string
         
                     
                     
                     // DEBUG:  Output it to the terminal
-//                    print("Current Temperature: \(currentTemp)")
-//                    print("Temperature Status: \(tempStatus)")
+                    print("Current Temperature: \(currentTemp)")
+                    print("Temperature Status: \(tempStatus)")
      
                     
 //                    // display in a UI
@@ -76,40 +76,40 @@ class ViewController: UIViewController, WCSessionDelegate {
 //                self.geocode(cityName: "London")
     }
     
-    func geocode(cityName:String) {
-        let geocoder = CLGeocoder()
-        print("Trying to geocode \(cityName) to lat/lon")
-        geocoder.geocodeAddressString(cityName) {
-            
-            (placemarks, error) in
-            
-            print("Got a response")
-            // Process Response
-            if let error = error {
-                print("Unable to Forward Geocode Address (\(error))")
-//                self.savedCityLabel.text = "Unable to Find Location for Address"
-                self.cityCoordinates = nil
-            } else {
-                var location: CLLocation?
-                
-                if let placemarks = placemarks, placemarks.count > 0 {
-                    location = placemarks.first?.location
-                    self.cityCoordinates = location?.coordinate
-                }
-                
-                if let location = location {
-                    self.cityCoordinates = location.coordinate
-                    
-                } else {
-                    print("No matching location found")
-//                    self.savedCityLabel.text = "No Matching Location Found"
-                    self.cityCoordinates = nil
-                }
-            }
-            
-            print("City coordinates: \(self.cityCoordinates)")
-        }
-    }
+//    func geocode(cityName:String) {
+//        let geocoder = CLGeocoder()
+//        print("Trying to geocode \(cityName) to lat/lon")
+//        geocoder.geocodeAddressString(cityName) {
+//
+//            (placemarks, error) in
+//
+//            print("Got a response")
+//            // Process Response
+//            if let error = error {
+//                print("Unable to Forward Geocode Address (\(error))")
+////                self.savedCityLabel.text = "Unable to Find Location for Address"
+//                self.cityCoordinates = nil
+//            } else {
+//                var location: CLLocation?
+//
+//                if let placemarks = placemarks, placemarks.count > 0 {
+//                    location = placemarks.first?.location
+//                    self.cityCoordinates = location?.coordinate
+//                }
+//
+//                if let location = location {
+//                    self.cityCoordinates = location.coordinate
+//
+//                } else {
+//                    print("No matching location found")
+////                    self.savedCityLabel.text = "No Matching Location Found"
+//                    self.cityCoordinates = nil
+//                }
+//            }
+//
+//            print("City coordinates: \(self.cityCoordinates)")
+//        }
+//    }
 
 
 }

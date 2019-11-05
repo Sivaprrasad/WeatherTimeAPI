@@ -80,25 +80,14 @@ class InterfaceController: WKInterfaceController {
             
             // display in a UI
             
-//            @IBOutlet var cityLabel: WKInterfaceLabel!
-//            @IBOutlet weak var localTimeLabel: WKInterfaceLabel!
-//            @IBOutlet weak var currentTempLabel: WKInterfaceLabel!
-//            @IBOutlet weak var feelsLikeLabel: WKInterfaceLabel!
-//
-//            @IBOutlet weak var precipLabel: WKInterfaceLabel!
-//
-//            @IBOutlet weak var humidityLabel: WKInterfaceLabel!
-//            @IBOutlet weak var descriptLabel: WKInterfaceLabel!
-            
             self.cityLabel.setText("\(cityName)")
             self.localTimeLabel.setText("\(lTime)")
             self.currentTempLabel.setText("\(currentTemp)°C")
             self.feelsLikeLabel.setText("\(feelsLike)°C")
             self.precipLabel.setText("\(precipitation)")
-            self.humidityLabel.setText("Humidity: \(humidity) % ")
+            self.humidityLabel.setText("\(humidity) % ")
             self.descriptLabel.setText("\(desc)")
             
-
         }
     }
    

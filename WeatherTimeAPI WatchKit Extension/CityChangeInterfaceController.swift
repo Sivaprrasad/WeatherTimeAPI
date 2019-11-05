@@ -21,11 +21,10 @@ class CityChangeInterfaceController: WKInterfaceController {
 
     // MARK: Variables
     var city:String!
-//    var latitude:String?
-//    var longitude:String?
+
 
     // MARK: API KEYS
-    let API_KEY = "361348d124de7eca4866684aeb3d5831"
+    let API_KEY = "ef9c9bf3475dc1e23bf5b28914c12fbf"
     var mainVC:InterfaceController?
     
     @IBAction func selectCityPressed() {
@@ -52,27 +51,15 @@ class CityChangeInterfaceController: WKInterfaceController {
     
     func geocode(cityName:String) {
         
-        // Get lat long using LocationIQ API (https://api.openweathermap.org/data/2.5/weather?q=Toronto&units=metric&appid=361348d124de7eca4866684aeb3d5831)
-        // You can use Google, but you need to give Google your credit card number.
-        // You can use the built in Apple CoreLocation library, but this library doesn't work properly with the emulator. See notes below.
-        
-        
         // TODO: Put your API call here
-        
         // Encode the city name
         let cityParam = cityName.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
+    
         
+        let URL = "http://api.weatherstack.com/current?access_key=\(self.API_KEY)&query=\(cityParam!)&units=m"
         
-        // start showing the loading image
+        print("Url: \(URL)")
         
-        self.loadingImage.setImageNamed("Progress")
-        self.loadingImage.startAnimatingWithImages(in: NSMakeRange(0, 10), duration: 1, repeatCount: 0)
-        self.saveButtonLabel.setText("Saving...")
-        
-        
-        let URL = "https://api.openweathermap.org/data/2.5/weather?q=\(cityParam!)&units=metric&appid=\(self.API_KEY)"
-//       "https://us1.locationiq.com/v1/search.php?key=\(self.API_KEY)&q=\(cityParam!)&format=json"
-        print(URL)
         Alamofire.request(URL).responseJSON {
             // 1. store the data from the internet in the
             // response variable
@@ -84,8 +71,9 @@ class CityChangeInterfaceController: WKInterfaceController {
                 return
             }
             // Get the lat/long component out of the response url
-            var jsonResponse = JSON(apiData)
+            let jsonResponse = JSON(apiData)
             print(jsonResponse)
+            
             let results = jsonResponse.array?.first
             
             if (results == nil) {
@@ -94,29 +82,23 @@ class CityChangeInterfaceController: WKInterfaceController {
             }
             
             let data = JSON(results)
+            self.city = data["location"]["name"].string
 //            self.latitude = data["lat"].string
 //            self.longitude = data["lon"].string
-            
+            print("Name: \(self.city)")
 //            print("Lat: \(self.latitude)")
 //            print("Long: \(self.longitude)")
             
             
             // save this to Shared Preferences
-
+            let preferences = UserDefaults.standard
             
+            preferences.set(self.city, forKey:"savedCity")
+
             // dismiss the View Controller
             self.popToRootController()
         
         }
-        
-        
-        // MARK: Geocoding with CoreLocation libraries
-        // -------------
-    
-        //Note:  This is the code for performing geolocation with the built in CoreLocation library.
-        //But, the code doesn't work properly with the watchOS Emulator.
-        //It WILL work with a real watch -- just not the simulator.
-        //This code remains here for reference purposes
         
     }
     
@@ -132,13 +114,14 @@ class CityChangeInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        // get name of city in shared preferences
-//        let preferences = UserDefaults.standard
-//        guard let savedCity = preferences.string(forKey: "savedCity") else {
-//            return
-//        }
-//
-//        self.savedCityLabel.setText(savedCity)
+//        get name of city in shared preferences
+        
+        let preferences = UserDefaults.standard
+        guard let savedCity = preferences.string(forKey: "savedCity") else {
+            return
+        }
+
+        self.savedCityLabel.setText(savedCity)
     }
 
     override func didDeactivate() {

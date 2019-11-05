@@ -21,11 +21,14 @@ class CityChangeInterfaceController: WKInterfaceController {
 
     // MARK: Variables
     var city:String!
+    var latitude:String?
+    var longitude:String?
 
 
     // MARK: API KEYS
     let API_KEY = "ef9c9bf3475dc1e23bf5b28914c12fbf"
     var mainVC:InterfaceController?
+    
     
     @IBAction func selectCityPressed() {
         // 1. When person clicks on button, show them the input UI
@@ -54,12 +57,9 @@ class CityChangeInterfaceController: WKInterfaceController {
         // TODO: Put your API call here
         // Encode the city name
         let cityParam = cityName.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
-    
         
         let URL = "http://api.weatherstack.com/current?access_key=\(self.API_KEY)&query=\(cityParam!)&units=m"
-        
         print("Url: \(URL)")
-        
         Alamofire.request(URL).responseJSON {
             // 1. store the data from the internet in the
             // response variable
@@ -75,25 +75,28 @@ class CityChangeInterfaceController: WKInterfaceController {
             print(jsonResponse)
             
             let results = jsonResponse.array?.first
-            
             if (results == nil) {
                 print("Error parsing results from JSON response")
                 return
+               
+                //
             }
-            
+
             let data = JSON(results)
             self.city = data["location"]["name"].string
-//            self.latitude = data["lat"].string
-//            self.longitude = data["lon"].string
+            self.latitude = data["lat"].string
+            self.longitude = data["lon"].string
             print("Name: \(self.city)")
-//            print("Lat: \(self.latitude)")
-//            print("Long: \(self.longitude)")
+            print("Lat: \(self.latitude)")
+            print("Long: \(self.longitude)")
             
             
             // save this to Shared Preferences
             let preferences = UserDefaults.standard
-            
+
             preferences.set(self.city, forKey:"savedCity")
+            preferences.set(self.latitude, forKey:"savedLat")
+            preferences.set(self.longitude, forKey:"savedLng")
 
             // dismiss the View Controller
             self.popToRootController()

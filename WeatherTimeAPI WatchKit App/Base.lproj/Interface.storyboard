@@ -6,89 +6,103 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
     <scenes>
-        <!--mainpage-->
+        <!--Interface Controller-->
         <scene sceneID="jEM-Id-Oop">
             <objects>
-                <controller identifier="mainpage" id="cHJ-RO-HXf" customClass="InterfaceController" customModule="WeatherTimeAPI_WatchKit_App" customModuleProvider="target">
+                <controller id="cHJ-RO-HXf" customClass="InterfaceController" customModule="WeatherTimeAPI_WatchKit_App" customModuleProvider="target">
                     <items>
                         <label alignment="center" text="Your City" id="2qF-Q7-SgZ"/>
                         <separator width="50" alignment="center" id="E3P-hh-Xrm">
                             <color key="color" red="0.38823530080000002" green="0.85490196939999996" blue="0.21960784489999999" alpha="1" colorSpace="deviceRGB"/>
                         </separator>
-                        <group width="1" alignment="left" id="oHF-xD-lSZ">
+                        <label alignment="center" text="Local Time" id="jid-Ik-Qyg"/>
+                        <group width="1" alignment="left" layout="vertical" id="oHF-xD-lSZ">
                             <items>
-                                <group width="1" alignment="center" layout="vertical" id="W7N-h8-KmF" userLabel="weatherData">
+                                <group width="1" alignment="center" id="W7N-h8-KmF">
                                     <items>
-                                        <label alignment="right" verticalAlignment="center" text="Temperature" minimumScaleFactor="0.29999999999999999" id="NpU-95-6xg"/>
-                                        <label alignment="right" verticalAlignment="center" text="Max" minimumScaleFactor="0.29999999999999999" id="ObE-Lg-8Uz"/>
-                                        <label alignment="right" verticalAlignment="center" text="Min" minimumScaleFactor="0.29999999999999999" id="nqj-n4-ebB"/>
-                                        <label alignment="right" verticalAlignment="center" text="Humidity" minimumScaleFactor="0.29999999999999999" id="Pqv-md-xgI"/>
-                                        <label alignment="right" verticalAlignment="center" text="Description" minimumScaleFactor="0.10000000000000001" id="uVR-vh-Iw8"/>
+                                        <label alignment="left" text="Temperature:" id="KPD-Gi-Eoj"/>
+                                        <label width="29" alignment="left" text="---" minimumScaleFactor="0.5" id="NpU-95-6xg"/>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" id="EWi-I9-dX6">
+                                    <items>
+                                        <label alignment="left" text="FeelsLike:" id="bEl-f7-ct0"/>
+                                        <label alignment="left" text="---" minimumScaleFactor="0.5" id="ObE-Lg-8Uz"/>
+                                    </items>
+                                </group>
+                                <group width="1" alignment="left" id="gKO-q4-Wq3">
+                                    <items>
+                                        <label alignment="left" text="Precipitation:" id="EUj-D4-WvC"/>
+                                        <label alignment="left" text="---" minimumScaleFactor="0.5" id="nqj-n4-ebB"/>
                                     </items>
                                 </group>
                             </items>
                         </group>
-                        <button alignment="center" verticalAlignment="bottom" id="0HF-QH-Aeb">
-                            <group key="contentGroup" height="30" alignment="left" spacing="5" id="sso-Zd-5XI">
-                                <items>
-                                    <imageView width="16" height="16" alignment="left" verticalAlignment="center" image="settings-light" id="NQI-oE-VpW"/>
-                                    <label alignment="center" verticalAlignment="center" text="Change City" id="NKW-rp-ctT">
-                                        <fontDescription key="font" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="13"/>
-                                    </label>
-                                </items>
-                                <color key="backgroundColor" red="0.1756665687" green="0.1756665687" blue="0.1756665687" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <edgeInsets key="margins" left="7" right="7" top="0.0" bottom="0.0"/>
-                            </group>
+                        <group width="1" alignment="left" id="s01-fc-xZB">
+                            <items>
+                                <label alignment="left" text="Humidity:" id="jzt-75-bWQ"/>
+                                <label alignment="left" text="---" minimumScaleFactor="0.5" id="Pqv-md-xgI"/>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="RtE-eZ-0gu">
+                            <items>
+                                <label alignment="left" text="Summary:" id="er2-Jr-UlF"/>
+                                <label alignment="left" text="---" minimumScaleFactor="0.5" id="uVR-vh-Iw8"/>
+                            </items>
+                        </group>
+                        <button width="1" alignment="left" title="Change City" id="2Ev-WL-TSq">
+                            <connections>
+                                <action selector="changeCityButtonPressed" destination="cHJ-RO-HXf" id="bDk-bM-ha2"/>
+                                <segue destination="Y4s-kt-7L8" kind="push" id="85j-As-6Ma"/>
+                            </connections>
                         </button>
                     </items>
                     <connections>
                         <outlet property="cityLabel" destination="2qF-Q7-SgZ" id="5Z4-gj-C8G"/>
                         <outlet property="currentTempLabel" destination="NpU-95-6xg" id="oAZ-HX-gWa"/>
                         <outlet property="descriptLabel" destination="uVR-vh-Iw8" id="WUK-24-S4J"/>
+                        <outlet property="feelsLikeLabel" destination="ObE-Lg-8Uz" id="XhM-6b-ezl"/>
                         <outlet property="humidityLabel" destination="Pqv-md-xgI" id="Njx-0U-J16"/>
-                        <outlet property="maxTempLabel" destination="ObE-Lg-8Uz" id="XhM-6b-ezl"/>
-                        <outlet property="minTempLabel" destination="nqj-n4-ebB" id="Dgl-zL-x7U"/>
+                        <outlet property="localTimeLabel" destination="jid-Ik-Qyg" id="5zp-Vt-NF8"/>
+                        <outlet property="precipLabel" destination="nqj-n4-ebB" id="Dgl-zL-x7U"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="386" y="139"/>
+            <point key="canvasLocation" x="396" y="138.5"/>
         </scene>
-        <!--City Settings Interface Controller-->
-        <scene sceneID="FuV-Up-Ev3">
+        <!--City Change Interface Controller-->
+        <scene sceneID="Sne-U6-UK1">
             <objects>
-                <controller id="Cyn-i5-Oxr" customClass="CitySettingsInterfaceController" customModule="APIDemo_WatchKit_Extension">
+                <controller id="Y4s-kt-7L8" customClass="CityChangeInterfaceController" customModule="WeatherTimeAPI_WatchKit_Extension">
                     <items>
-                        <button width="1" alignment="left" title="Select City" id="hA7-Hh-xbB">
+                        <button width="1" alignment="left" title="Select City" id="vUQ-nm-sra">
                             <connections>
-                                <action selector="selectCityPressed" destination="Cyn-i5-Oxr" id="tsJ-B0-edD"/>
+                                <action selector="selectCityPressed" destination="Y4s-kt-7L8" id="anp-6Q-dlS"/>
                             </connections>
                         </button>
-                        <label alignment="left" text="Current City:" id="OzR-B3-f3f"/>
-                        <label alignment="left" text="-" id="0oo-98-zcM"/>
-                        <button alignment="center" verticalAlignment="bottom" id="tmA-rk-XUw">
-                            <group key="contentGroup" width="1" alignment="left" spacing="10" id="HWm-mt-qE2">
+                        <label alignment="left" text="Current City:" id="wXQ-LQ-RwG"/>
+                        <label alignment="left" text="-" id="AJm-Xc-snb"/>
+                        <button alignment="center" verticalAlignment="bottom" id="s4y-KU-dLM">
+                            <group key="contentGroup" width="1" alignment="left" spacing="10" id="3pJ-oo-nLk">
                                 <items>
-                                    <imageView width="32" height="32" alignment="left" id="AX2-Ks-ikw"/>
-                                    <label alignment="left" verticalAlignment="center" text="Save" id="bVU-Xj-viI"/>
+                                    <imageView width="32" height="32" alignment="left" id="cHa-OR-mma"/>
+                                    <label alignment="left" verticalAlignment="center" text="Save" id="hFl-hp-ptT"/>
                                 </items>
                                 <edgeInsets key="margins" left="7" right="7" top="5" bottom="5"/>
                             </group>
                             <connections>
-                                <action selector="saveButtonPressed" destination="Cyn-i5-Oxr" id="rV7-2o-t1F"/>
+                                <action selector="saveButtonPressed" destination="Y4s-kt-7L8" id="EzW-mV-Bei"/>
                             </connections>
                         </button>
                     </items>
                     <connections>
-                        <outlet property="loadingImage" destination="AX2-Ks-ikw" id="Sbk-DI-rwE"/>
-                        <outlet property="saveButtonLabel" destination="bVU-Xj-viI" id="2uO-ZV-OBP"/>
-                        <outlet property="savedCityLabel" destination="0oo-98-zcM" id="jOC-sS-cWx"/>
+                        <outlet property="loadingImage" destination="cHa-OR-mma" id="1ik-P8-Loy"/>
+                        <outlet property="saveButtonLabel" destination="hFl-hp-ptT" id="d2P-69-iGx"/>
+                        <outlet property="savedCityLabel" destination="AJm-Xc-snb" id="gAj-sb-zAz"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="707" y="126"/>
+            <point key="canvasLocation" x="639" y="138"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="settings-light" width="480" height="480"/>
-    </resources>
 </document>

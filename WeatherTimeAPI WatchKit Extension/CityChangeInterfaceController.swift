@@ -10,8 +10,9 @@ import WatchKit
 import Foundation
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
-class CitySettingsInterfaceController: WKInterfaceController {
+class CityChangeInterfaceController: WKInterfaceController {
 
     // MARK: Outlets
     @IBOutlet var savedCityLabel: WKInterfaceLabel!
@@ -20,8 +21,8 @@ class CitySettingsInterfaceController: WKInterfaceController {
 
     // MARK: Variables
     var city:String!
-    var latitude:String?
-    var longitude:String?
+//    var latitude:String?
+//    var longitude:String?
 
     // MARK: API KEYS
     let API_KEY = "361348d124de7eca4866684aeb3d5831"
@@ -69,7 +70,7 @@ class CitySettingsInterfaceController: WKInterfaceController {
         self.saveButtonLabel.setText("Saving...")
         
         
-        let URL = "https://api.openweathermap.org/data/2.5/weather?q=\(cityParam!)&units=metric&appid=\(self.API_KEY)&format=json"
+        let URL = "https://api.openweathermap.org/data/2.5/weather?q=\(cityParam!)&units=metric&appid=\(self.API_KEY)"
 //       "https://us1.locationiq.com/v1/search.php?key=\(self.API_KEY)&q=\(cityParam!)&format=json"
         print(URL)
         Alamofire.request(URL).responseJSON {
@@ -93,24 +94,19 @@ class CitySettingsInterfaceController: WKInterfaceController {
             }
             
             let data = JSON(results)
-            self.latitude = data["lat"].string
-            self.longitude = data["lon"].string
+//            self.latitude = data["lat"].string
+//            self.longitude = data["lon"].string
             
-            print("Lat: \(self.latitude)")
-            print("Long: \(self.longitude)")
+//            print("Lat: \(self.latitude)")
+//            print("Long: \(self.longitude)")
             
             
             // save this to Shared Preferences
-            let preferences = UserDefaults.standard
-            preferences.set(self.latitude, forKey:"savedLat")
-            preferences.set(self.longitude, forKey:"savedLon")
-            preferences.set(self.city, forKey:"savedCity")
+
             
             // dismiss the View Controller
             self.popToRootController()
-            
-            
-            self.loadingImage.stopAnimating()
+        
         }
         
         
@@ -121,22 +117,6 @@ class CitySettingsInterfaceController: WKInterfaceController {
         //But, the code doesn't work properly with the watchOS Emulator.
         //It WILL work with a real watch -- just not the simulator.
         //This code remains here for reference purposes
-        
-        
-        let geocoder = CLGeocoder()
-        
-        geocoder.geocodeAddressString(cityName, completionHandler: {
-            
-            (placemarks, error) -> Void in
-            
-            if((error) != nil){
-                print("Error", error)
-            }
-            if let placemark = placemarks?.first {
-                let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                print(coordinates)
-            }
-        })
         
     }
     
@@ -153,12 +133,12 @@ class CitySettingsInterfaceController: WKInterfaceController {
         super.willActivate()
         
         // get name of city in shared preferences
-        let preferences = UserDefaults.standard
-        guard let savedCity = preferences.string(forKey: "savedCity") else {
-            return
-        }
-        
-        self.savedCityLabel.setText(savedCity)
+//        let preferences = UserDefaults.standard
+//        guard let savedCity = preferences.string(forKey: "savedCity") else {
+//            return
+//        }
+//
+//        self.savedCityLabel.setText(savedCity)
     }
 
     override func didDeactivate() {

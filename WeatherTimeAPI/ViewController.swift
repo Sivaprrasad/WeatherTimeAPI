@@ -34,7 +34,7 @@ class ViewController: UIViewController, WCSessionDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-                let URL = "https://api.openweathermap.org/data/2.5/weather?q=Toronto&units=metric&appid=361348d124de7eca4866684aeb3d5831"
+                let URL = "http://api.weatherstack.com/current?access_key=ef9c9bf3475dc1e23bf5b28914c12fbf&query=toronto&units=m"
                 
                 Alamofire.request(URL).responseJSON {
                     // 1. store the data from the internet in the
@@ -48,32 +48,11 @@ class ViewController: UIViewController, WCSessionDelegate {
                     }
                     
                     // OUTPUT the entire json response to the terminal
-                    print(apiData)
+//                    print(apiData)
                     
                     
                     // GET sunrise/sunset time out of the JSON response
-                    let jsonResponse = JSON(apiData)
-                    let cityName = jsonResponse["name"].stringValue
-                    let currentTemp = jsonResponse["main"]["temp"].stringValue
-                    let maxTemp = jsonResponse["main"]["temp_max"].stringValue
-                    let minTemp = jsonResponse["main"]["temp_min"].stringValue
-                    let humidity = jsonResponse["main"]["humidity"].stringValue
-//                    let cloudiness = jsonResponse["clouds"]["all"].stringValue
-                    let desc = jsonResponse["weather"][0]["description"].stringValue
-                    
-                    
-//                    let tempStatus = jsonResponse["results"]["weather"][1].string
-        
-                    
-                    
-                    // DEBUG:  Output it to the terminal
-                    print("City Name: \(cityName)")
-                    print("Current Temperature: \(currentTemp)")
-                    print("Maximum Temperature: \(maxTemp)")
-                    print("Minimum Temperature: \(minTemp)")
-                    print("Humidity: \(humidity)")
-//                    print("Cloudiness: \(cloudiness)")
-                    print("Description: \(desc)")
+    
                 }
             
     }

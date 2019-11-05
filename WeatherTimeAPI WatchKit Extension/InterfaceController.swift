@@ -16,11 +16,13 @@ class InterfaceController: WKInterfaceController {
 
     // MARK: Outlets
    
-    @IBOutlet var cityLabel: WKInterfaceLabel!
-    @IBOutlet weak var currentTempLabel: WKInterfaceLabel!
-    @IBOutlet weak var maxTempLabel: WKInterfaceLabel!
     
-    @IBOutlet weak var minTempLabel: WKInterfaceLabel!
+    @IBOutlet var cityLabel: WKInterfaceLabel!
+    @IBOutlet weak var localTimeLabel: WKInterfaceLabel!
+    @IBOutlet weak var currentTempLabel: WKInterfaceLabel!
+    @IBOutlet weak var feelsLikeLabel: WKInterfaceLabel!
+    
+    @IBOutlet weak var precipLabel: WKInterfaceLabel!
     
     @IBOutlet weak var humidityLabel: WKInterfaceLabel!
     @IBOutlet weak var descriptLabel: WKInterfaceLabel!
@@ -37,35 +39,10 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+         
+        let URL = "http://api.weatherstack.com/current?access_key=ef9c9bf3475dc1e23bf5b28914c12fbf&query=toronto&units=m"
         
-//        let preferences = UserDefaults.standard
-//
-//        print("SHARED PREFERENCES OUTPUT")
-//        print(preferences.string(forKey: "savedLat"))
-//        print(preferences.string(forKey: "savedLon"))
-//        print(preferences.string(forKey: "savedCity"))
-//
-//
-//        var lat = preferences.string(forKey:"savedLat")
-//        var lon = preferences.string(forKey:"savedLon")
-//        var city = preferences.string(forKey:"savedCity")
-//
-//        if (lat == nil || lon == nil || city == nil) {
-//            lat = "35"
-//            lon = "139"
-//            city = "London"
-//
-//        }
-        
-//         Update UI
-//         self.cityLabel.setText(city)
-        
-        // start animations
-//        self.showLoadingAnimations()
-        
-        // TODO: Put your API call here
-        
-        let URL = "https://api.openweathermap.org/data/2.5/weather?q=Toronto&units=metric&appid=361348d124de7eca4866684aeb3d5831"
+
         print("Url: \(URL)")
         Alamofire.request(URL).responseJSON {
             // 1. store the data from the internet in the
@@ -82,28 +59,45 @@ class InterfaceController: WKInterfaceController {
             
             // GET sunrise/sunset time out of the JSON response
             let jsonResponse = JSON(apiData)
-            let cityName = jsonResponse["name"].stringValue
-            let currentTemp = jsonResponse["main"]["temp"].stringValue
-            let maxTemp = jsonResponse["main"]["temp_max"].stringValue
-            let minTemp = jsonResponse["main"]["temp_min"].stringValue
-            let humidity = jsonResponse["main"]["humidity"].stringValue
-            let desc = jsonResponse["weather"][0]["description"].stringValue
+            let cityName = jsonResponse["location"]["name"].stringValue
+            let lTime = jsonResponse["location"]["localtime"].stringValue
+            let currentTemp = jsonResponse["current"]["temperature"].stringValue
+            let feelsLike = jsonResponse["current"]["feelslike"].stringValue
+//            let minTemp = jsonResponse["main"]["temp_min"].stringValue
+            let humidity = jsonResponse["current"]["humidity"].stringValue
+            let precipitation = jsonResponse["current"]["precip"].stringValue
+            let desc = jsonResponse["current"]["weather_descriptions"][0].stringValue
+//            let time = jsonResponse
             
             // DEBUG:  Output it to the terminal
             print("City Name: \(cityName)")
+            print("Local Date And Time: \(lTime)")
             print("Current Temperature: \(currentTemp)")
-            print("Maximum Temperature: \(maxTemp)")
-            print("Minimum Temperature: \(minTemp)")
+            print("Feels Like: \(feelsLike)")
+            print("Precipitation: \(precipitation)")
             print("Humidity: \(humidity)")
             print("Description: \(desc)")
             
             // display in a UI
+            
+//            @IBOutlet var cityLabel: WKInterfaceLabel!
+//            @IBOutlet weak var localTimeLabel: WKInterfaceLabel!
+//            @IBOutlet weak var currentTempLabel: WKInterfaceLabel!
+//            @IBOutlet weak var feelsLikeLabel: WKInterfaceLabel!
+//
+//            @IBOutlet weak var precipLabel: WKInterfaceLabel!
+//
+//            @IBOutlet weak var humidityLabel: WKInterfaceLabel!
+//            @IBOutlet weak var descriptLabel: WKInterfaceLabel!
+            
             self.cityLabel.setText("\(cityName)")
-            self.currentTempLabel.setText("Temperature: \(currentTemp)'C")
-            self.maxTempLabel.setText("Max Temperature: \(maxTemp)'C")
-            self.minTempLabel.setText("Min Temperature: \(minTemp)'C")
+            self.localTimeLabel.setText("\(lTime)")
+            self.currentTempLabel.setText("\(currentTemp)°C")
+            self.feelsLikeLabel.setText("\(feelsLike)°C")
+            self.precipLabel.setText("\(precipitation)")
             self.humidityLabel.setText("Humidity: \(humidity) % ")
             self.descriptLabel.setText("\(desc)")
+            
 
         }
     }
@@ -115,8 +109,8 @@ class InterfaceController: WKInterfaceController {
 
     
     // MARK: Actions
+    
     @IBAction func changeCityButtonPressed() {
-        
     }
     
     

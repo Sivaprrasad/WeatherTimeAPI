@@ -23,7 +23,7 @@
 		CF0D5A252369FBDC00289A47 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D5A242369FBDC00289A47 /* InterfaceController.swift */; };
 		CF0D5A272369FBDC00289A47 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0D5A262369FBDC00289A47 /* ExtensionDelegate.swift */; };
 		CF0D5A292369FBDD00289A47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF0D5A282369FBDD00289A47 /* Assets.xcassets */; };
-		CF1FAA31236C974D009A7C34 /* CitySettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FAA30236C974D009A7C34 /* CitySettingsInterfaceController.swift */; };
+		CFD841682370DB1C0065283F /* CityChangeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FAA30236C974D009A7C34 /* CityChangeInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +95,7 @@
 		CF0D5A262369FBDC00289A47 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		CF0D5A282369FBDD00289A47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF0D5A2A2369FBDD00289A47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF1FAA30236C974D009A7C34 /* CitySettingsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySettingsInterfaceController.swift; sourceTree = "<group>"; };
+		CF1FAA30236C974D009A7C34 /* CityChangeInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityChangeInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				CF0D5A242369FBDC00289A47 /* InterfaceController.swift */,
-				CF1FAA30236C974D009A7C34 /* CitySettingsInterfaceController.swift */,
+				CF1FAA30236C974D009A7C34 /* CityChangeInterfaceController.swift */,
 				CF0D5A262369FBDC00289A47 /* ExtensionDelegate.swift */,
 				CF0D5A282369FBDD00289A47 /* Assets.xcassets */,
 				CF0D5A2A2369FBDD00289A47 /* Info.plist */,
@@ -459,7 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF0D5A272369FBDC00289A47 /* ExtensionDelegate.swift in Sources */,
-				CF1FAA31236C974D009A7C34 /* CitySettingsInterfaceController.swift in Sources */,
+				CFD841682370DB1C0065283F /* CityChangeInterfaceController.swift in Sources */,
 				CF0D5A252369FBDC00289A47 /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
